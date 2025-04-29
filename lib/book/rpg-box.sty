@@ -5,7 +5,7 @@
 	bottomtitle=2mm,
 	left=8pt,
 	right=8pt,
-	arc=0mm,
+	arc=.5mm,
 	fonttitle=\rpg@BoxTitleFont,
 	fontupper=\rpg@BoxBodyFont,
     title=#1,
@@ -28,6 +28,30 @@
     \end{rpg-box}
 }
 
+% Generic Box
+\newtcolorbox{rpg-box-rules}[2][]{
+	boxrule=1pt,
+	toptitle=2mm,
+	bottomtitle=2mm,
+	left=8pt,
+	right=8pt,
+	arc=2mm,
+	fonttitle=\rpg@BoxTitleFont,
+	fontupper=\rpg@BoxBodyFont,
+	title=#1,
+	colback={#2!75!white},
+	colframe={#2!75!black},
+	colbacktitle=#2,
+	opacityback=0.5
+}
+
+\newcommand\rpg@stepsboxname{Schritte zum Erfolg}
+\newenvironment{rpg-sug}{
+	\begin{rpg-box-rules}[\rpg@stepsboxname]{color-rules}
+	}{
+	\end{rpg-box-rules}
+}
+
 %Quelques conseils if #1 is none
 \newenvironment{rpg-suggestionbox}{
     \begin{rpg-box}[\rpg@suggestionboxname]{commentblue}
@@ -40,7 +64,11 @@
     left=1mm,
 	right=1mm,
     enhanced,
+	fonttitle=\rpg@BoxBoxTitleFont,
     attach boxed title to top center={yshift=-0.25mm-\tcboxedtitleheight/2,yshifttext=2mm-\tcboxedtitleheight/2},
+    colframe=rpg-boxframecolor, %exboxbackground,
+    colback=monstertandark!50!white,
+    colbacktitle=rpg-boxtitlebgcolor,
     boxed title style={
         boxrule=0.5mm,
         frame code={
@@ -58,7 +86,37 @@
     #1
 }
 
-\newtcolorbox{rpg-examplebox}{
+\newtcolorbox{rpg-listbox}[2][]{
+	title=#2,
+	left=1mm,
+	right=1mm,
+	enhanced,
+	fonttitle=\rpg@BoxBoxTitleFont,
+	attach boxed title to top center={yshift=-0.25mm-\tcboxedtitleheight/2,yshifttext=2mm-\tcboxedtitleheight/2},
+	colframe=rpg-boxframecolor, %exboxbackground,
+	colback=monstertandark!50!white,
+	colbacktitle=rpg-boxtitlebgcolor,
+	opacityframe=0,
+	opacityback=0,
+	boxed title style={
+		boxrule=0.5mm,
+		frame code={
+			\path[tcb fill frame] ([xshift=-4mm]frame.west)
+			-- (frame.north west) -- (frame.north east) -- ([xshift=4mm]frame.east)
+			-- (frame.south east) -- (frame.south west) -- cycle;
+		},
+		interior code={
+			\path[tcb fill interior] ([xshift=-2mm]interior.west)
+			-- (interior.north west) -- (interior.north east)
+			-- ([xshift=2mm]interior.east) -- (interior.south east) -- (interior.south west)
+			-- cycle;
+		}
+	},
+	#1
+}
+
+
+\newtcolorbox{rpg-examplebox-old}{
 	enhanced,
 	before skip=11pt plus 1pt,
 	toptitle=3mm,
@@ -71,18 +129,38 @@
 	arc=0mm,
 	borderline north={1pt}{-0.5pt}{black},
 	borderline south={1pt}{-0.5pt}{black},
-	colback=monstertandark,
-	colframe=monstertandark,
-	colbacktitle=monstertandark,
+	colback=exampleboxbg,
+	colframe=rpg-boxframecolor,
+	colbacktitle=rpg-boxtitlebgcolor,
 	fuzzy shadow={0mm}{-3.5pt}{-0.5pt}{0.4mm}{black!60!white},
 	overlay={
 		\fill [fill=black] (frame.south west) -- ++(7pt,0) -- ++(0,-5pt) -- cycle;
 		\fill [fill=black] (frame.north west) -- ++(7pt,0) -- ++(0,5pt) -- cycle;
 		\fill [fill=black] (frame.north east) -- ++(-7pt,0) -- ++(0,5pt) -- cycle;
-		\fill [fill=black] (frame.south east) -- ++(-7pt,0) -- ++(0,-5pt) -- cycle;
+		\fill [fill=black] (frame.south east) -- ++(-7pt, 0) -- ++(0,-5pt) -- ++(7pt,0) -- cycle;
 		},
 	after={\vspace{10pt plus 1pt}\noindent}
 }
+
+\newtcolorbox{rpg-examplebox}[2][]{enhanced,skin=enhancedlast jigsaw,
+	attach boxed title to top left={xshift=-4mm,yshift=-0.5mm},
+	%fonttitle=\bfseries\sffamily,varwidth boxed title=0.7\linewidth,
+	fonttitle=\rpg@BoxTitleFont,
+	colbacktitle=rpg-boxtitlebgcolor, %exboxtitlebackground,
+	colframe=rpg-boxframecolor, %exboxbackground, %red!50!black,
+%	interior style={top color=blue!10!white,bottom color=red!10!white},
+	colback=monstertandark!50!white,
+	boxed title style={empty,arc=0pt,outer arc=0pt,boxrule=0pt},
+	underlay boxed title={
+		\fill[rpg-boxtitlebgcolor] (title.north west) -- (title.north east)
+		-- +(\tcboxedtitleheight-1mm,-\tcboxedtitleheight+1mm)
+		-- ([xshift=4mm,yshift=0.5mm]frame.north east) -- +(0mm,-1mm)
+		-- (title.south west) -- cycle;
+		\fill[rpg-boxframecolor] ([yshift=-0.5mm]frame.north west)
+		-- +(-0.4,0) -- +(0,-0.3) -- cycle;
+		\fill[rpg-boxframecolor] ([yshift=-0.5mm]frame.north east)
+		-- +(0,-0.3) -- +(0.4,0) -- cycle; },
+	title={#2},#1}
 
 \newcommand{\rpgsmall}[1][]{
     \color{lightgrey}{\footnotesize{#1}}}
@@ -94,15 +172,47 @@
     }
 }
 
+\newtcolorbox{mybox}[2][]{enhanced,
+	before skip=2mm,
+	after skip=2mm,
+	%colback=black!5,
+	colback=monstertandark!50!white,
+	%colframe=black!50,
+	colframe=rpg-boxframecolor, %red!50!black,
+	%boxrule=0.2mm,
+	attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+	colbacktitle=rpg-boxtitlebgcolor,
+	%varwidth boxed title*=-3cm,
+	boxed title style={frame code={
+			\path[fill=rpg-boxframecolor]
+			([yshift=-1mm,xshift=-1mm]frame.north west)
+			arc[start angle=0,end angle=180,radius=1mm]
+			([yshift=-1mm,xshift=1mm]frame.north east)
+			arc[start angle=180,end angle=0,radius=1mm];
+			\path[left color=rpg-boxtitlebgcolor,right color=rpg-boxtitlebgcolor,
+			middle color=rpg-boxtitlebgcolor]
+			([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+			[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+			-- (frame.south east) -- (frame.south west)
+			-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+			[sharp corners]-- cycle;
+		},interior engine=empty,
+	},
+	fonttitle=\rpg@BoxTitleFont,
+	title={#2},#1
+}
+	
+	
+
 \newtcolorbox{rpg-quotebox}{enhanced jigsaw,frame hidden,boxrule=0pt,
 	enhanced,
 	toptitle=3mm,
 	boxsep=0.25ex,
-	left=8pt,
-	right=8pt,
-	colback=bgtan,
-	colframe=bgtan,
-	colbacktitle=bgtan,
+	left=0pt,
+	right=0pt,
+	colback=monstertandark!50!white,
+	colframe=monstertandark!50!white,
+	colbacktitle=monstertandark!50!white,
 	arc=0mm,
 	fonttitle=\rpg@BoxTitleFont,
 	borderline west={1pt}{-0.5pt}{title1},
@@ -111,8 +221,8 @@
 	%title=#2,
 	overlay={
 		\foreach \n in {north east,north west,south east,south west}
-		{\draw [title1, fill=title1] (frame.\n) circle (2pt); }; },
-	after={\vspace{5pt plus 1pt}\noindent}
+		{\draw [rpg-boxframecolor, fill=rpg-boxframecolor] (frame.\n) circle (2pt); }; },
+	%after={\vspace{5pt plus 1pt}\noindent}
 }
 
 %\def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
@@ -120,6 +230,27 @@
 %    \parfillskip=0pt \finalhyphendemerits=0 \endgraf}
 %}
 
+
+
+\newtcolorbox{infobox}[1][]{enhanced,
+	before skip balanced=2mm,after skip balanced=3mm,
+	%boxrule=0.4pt,
+	left=7mm,
+	right=2mm,
+	top=1mm,
+	bottom=1mm,
+	colback=exboxbackground!15,
+	colframe=exboxbackground,
+	sharp corners,rounded corners=southeast,arc is angular,arc=3mm,
+	underlay={%
+		\path[fill=tcbcolback!80!black] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+		\path[draw=exboxbackground] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+		\path[fill=monstertandark!50!white,draw=none] (interior.south west) rectangle node[exboxbackground]{\Huge\bfseries !} ([xshift=6mm]interior.north west);
+	},
+	drop fuzzy shadow,#1
+}
+	
+	
 \newcommand{\rpgquote}[2]{
     \begin{quotation}
         \par
@@ -130,4 +261,27 @@
     \end{flushright}
 }
 
+\newcounter{example}
+\colorlet{colexam}{red!75!black}
+\newtcolorbox[use counter=example]{rpg-storybox}[1]{%
+	empty,
+	title=#1,
+	attach boxed title to top left,
+	boxed title style={empty,size=minimal,toprule=2pt,top=4pt,
+		overlay={\draw[exboxbackground,line width=2pt]
+			([yshift=-1pt]frame.north west)--([yshift=-1pt]frame.north east);}},
+	coltitle=exboxbackground,fonttitle=\Large\bfseries,
+	before=\par\medskip\noindent,parbox=false,boxsep=0pt,left=0pt,right=3mm,top=4pt,
+	breakable,pad at break*=0mm,vfill before first,
+	overlay unbroken={\draw[exboxbackground,line width=1pt]
+		([yshift=-1pt]title.north east)--([xshift=-0.5pt,yshift=-1pt]title.north-|frame.east)
+		--([xshift=-0.5pt]frame.south east)--(frame.south west); },
+	overlay first={\draw[exboxbackground,line width=1pt]
+		([yshift=-1pt]title.north east)--([xshift=-0.5pt,yshift=-1pt]title.north-|frame.east)
+		--([xshift=-0.5pt]frame.south east); },
+	overlay middle={\draw[exboxbackground,line width=1pt] ([xshift=-0.5pt]frame.north east)
+		--([xshift=-0.5pt]frame.south east); },
+	overlay last={\draw[exboxbackground,line width=1pt] ([xshift=-0.5pt]frame.north east)
+		--([xshift=-0.5pt]frame.south east)--(frame.south west);},%
+}
 

@@ -21,10 +21,15 @@
          \makebox[\paperwidth+1pt][l]{
             \hskip-\rpghmargin \relax
             \includegraphics[width=\paperwidth+1pt]{#2}
-        }
+		}
+			
+			
         \if #1b
             \vspace*{-\dimexpr\paperheight-\textheight-1in+13pt-\voffset-\topmargin-\headheight-\headsep\relax}
         \fi
-
+        
+        %\if #1r
+        %	\vspace*{-\dimexpr\paperheight-1in+13pt-\voffset-\topmargin-\headheight-\headsep\relax}
+        %\fi
     \end{figure*}
 }

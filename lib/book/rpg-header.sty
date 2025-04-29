@@ -3,6 +3,7 @@
 % Setup for custom footer
 \pagestyle{fancy}
 
+
 \newlength{\nobgfooterheight}
 \setlength{\nobgfooterheight}{\paperheight}
 \addtolength{\nobgfooterheight}{-1in}
@@ -15,52 +16,420 @@
 \renewcommand{\headrulewidth}{0.0pt} %no rule for header
 \renewcommand{\footrulewidth}{0.0pt} %no rule for footer
 
+\newcommand{\design}{1000}
+\newcommand{\footerxshift}{33pt}
+\newcommand{\footeryshift}{18pt}
+
+\newcommand{\chaptersign}[4]{%
+\checkoddpage
+	\ifoddpage
+		% Standard
+		\ifnum\design=1000
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Bilder/kapitelzeichen_1000.pdf}};
+		\fi
+		% Kapitel2
+		\ifnum\design=2000
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_2000.pdf}};
+		\fi
+		% Kapitel 3
+		\ifnum\design=3001
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_3001.pdf}};
+		\fi
+		\ifnum\design=3002
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_3002.pdf}};
+		\fi
+		% Magieafertigkeit
+		\ifnum\design=4040
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_magic.pdf}};
+		\fi
+		% Kampffertigkeit
+		\ifnum\design=4041
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_kampf.pdf}};
+		\fi
+		% Künstlerisch
+		\ifnum\design=4042
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_kunst.pdf}};
+		\fi
+		% Naturbezogene
+		\ifnum\design=4043
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_natur.pdf}};
+		\fi
+		% Soziale
+		\ifnum\design=4044
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_sozial.pdf}};
+		\fi
+		% Technische
+		\ifnum\design=4045
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_techno.pdf}};
+		\fi
+		% Überlebensfertigkeit
+		\ifnum\design=4046
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_survive.pdf}};
+		\fi
+		% Kampfsystem
+		\ifnum\design=6000
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_kampf.pdf}};
+		\fi
+		% Ausruestung
+		\ifnum\design=7000
+		\node[inner sep=0pt] at (1.1cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_ausruestung.pdf}};
+		\fi
+		
+		
+		\node[anchor=south east, xshift=-3pt, yshift=#3pt, align=center, minimum width=22pt] at (current page.south east) {\steam\textcolor{monstertandark}{\Huge\thechapter}};
+	\else
+		% Standard
+		\ifnum\design=1000
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Bilder/kapitelzeichen_1000.pdf}};
+		\fi
+		% Kapitel2
+		\ifnum\design=2000
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_2000.pdf}};
+		\fi
+		% Kapitel 3
+		\ifnum\design=3001
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_3001.pdf}};
+		\fi
+		\ifnum\design=3002
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_3002.pdf}};
+		\fi
+		% Magieafertigkeit
+		\ifnum\design=4040
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_magic.pdf}};
+		\fi
+		% Kampffertigkeit
+		\ifnum\design=4041
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_kampf.pdf}};
+		\fi
+		% Künstlerisch
+		\ifnum\design=4042
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_kunst.pdf}};
+		\fi
+		% Naturbezogene
+		\ifnum\design=4043
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_natur.pdf}};
+		\fi
+		% Soziale
+		\ifnum\design=4044
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_sozial.pdf}};
+		\fi
+		% Technische
+		\ifnum\design=4045
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_techno.pdf}};
+		\fi
+		% Überlebensfertigkeit
+		\ifnum\design=4046
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_survive.pdf}};
+		\fi
+		% Kampfsystem
+		\ifnum\design=6000
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_kampf.pdf}};
+		\fi
+		% Ausruestung
+		\ifnum\design=7000
+		\node[inner sep=0pt] at (-18.8cm, #2cm) {\includegraphics[width=1.1cm, height=2.6cm]{Regelwerk/Bilder/kapitelzeichen_ausruestung.pdf}};
+		\fi
+		
+		\node[anchor=south west, xshift=6pt, yshift=#3pt, align=center, minimum width=22pt] at (current page.south west) {\steam\textcolor{monstertandark}{\Huge\thechapter}};
+	\fi
+}
+
 \fancyhf{} % clear all headers and footers
 
 \fancyhead{
     \begin{tikzpicture}[remember picture,overlay]
-        \node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{lib/book/img/background}};
+		\node[inner sep=0pt] at (current page.center) {\includegraphics[width=1.0286\paperwidth,height=1.0202\paperheight]{Bilder/Background/background}};
+    	
+  
+    	\foreach \c/\x/\y/\w/\q in { 1/3/ -1.3/757/16, 
+    								 2/3/ -3.9/682/21, 
+    								 3/3/ -6.5/609/21, 
+    								 4/3/ -9.1/534/21, 
+    								 5/16/-11.7/460/21, 
+    								 6/16/-14.3/386/21, 
+    								 7/16/-16.9/312/21, 
+    								 8/16/-19.5/238/21, 
+    								 9/16/-22.1/164/21, 
+    								10/16/-24.7/90/21,
+    								11/3/ -1.3/757/16, 
+    								12/3/ -3.9/682/21, 
+    								13/3/ -6.5/609/21, 
+    								14/3/ -9.1/534/21, 
+    								15/16/-11.7/460/21, 
+    								16/16/-14.3/386/21, 
+    								17/16/-16.9/312/21, 
+    								18/16/-19.5/238/21, 
+    								19/16/-22.1/164/21, 
+    								20/16/-24.7/90/21,
+    								21/3/ -1.3/757/16, 
+    								22/3/ -3.9/682/21, 
+    								23/3/ -6.5/609/21, 
+    								24/3/ -9.1/534/21, 
+    								25/16/-11.7/460/21, 
+    								26/16/-14.3/386/21, 
+    								27/16/-16.9/312/21, 
+    								28/16/-19.5/238/21, 
+    								29/16/-22.1/164/21, 
+    								30/16/-24.7/90/21
+    								}
+    	{
+    		\ifnum\c=\thechapter
+    			\chaptersign{\x}{\y}{\w}{\q}
+    		\fi
+    	}
+    	
     \end{tikzpicture}
 }
 
 \fancyfoot[LE]{
     \begin{tikzpicture}[remember picture,overlay]
-        \node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth,height=43pt]{lib/book/img/footerscroll}};
-        \node[xshift=20pt,yshift=30pt] at (current page.south west) {\rpg@PageNumberFont\textcolor{pagegold}{\thepage}};
-        \node[anchor=south west,xshift=\marginparwidth+\marginparpush,yshift=27pt] at (current page.south west) {\rpg@FooterFont{\textcolor{pagegold}{\nouppercase\leftmark}}};
+%    	\foreach \c/\f in {
+%    		1/"lib/book/img/footerscroll"
+%    	} 
+    	{
+    		% Standard
+    		\ifnum\design=1000
+    			\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_1000}};
+    			\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};    			
+    		\fi
+    		% Kapitel2
+    		\ifnum\design=2000
+	    		\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_2000}};
+	    		\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+	    		\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};    			
+    		\fi
+    		% Kapitel 3
+    		\ifnum\design=3001
+    			\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_3001}};
+    			\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};    			
+    		\fi
+    		\ifnum\design=3002
+    			\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_3002}};
+    			\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};    			
+    		\fi
+    		% Magieafertigkeit
+    		\ifnum\design=4040
+    			\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_magic}};
+    			\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};    			
+%    			xshift=-114pt,
+    		\fi
+    		% Kampffertigkeit
+    		\ifnum\design=4041
+    			\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_fight}};
+    			\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};    			
+    		\fi
+    		% Künstlerisch
+    		\ifnum\design=4042
+    			\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_kunst}};
+    			\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};    			
+    		\fi
+    		% Naturbezogene
+    		\ifnum\design=4043
+    			\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_natur}};
+    			\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};    			
+    		\fi
+    		% Soziale
+    		\ifnum\design=4044
+    			\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_sozial}};
+    			\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Technische
+    		\ifnum\design=4045
+    			\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_techno}};
+    			\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Überlebensfertigkeit
+    		\ifnum\design=4046
+    			\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_survive}};
+    			\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Kampffsystem
+    		\ifnum\design=6000
+	    		\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_fight}};
+	    		\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+	    		\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};    			
+    		\fi
+    		% Ausruestung
+    		\ifnum\design=7000
+	    		\node[xscale=-1,inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_ausruestung}};
+	    		\node[anchor=south east, xshift=-556pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+	    		\node[anchor=south east,  yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};    			
+    		\fi
+    		
+%    		
+    	}
     \end{tikzpicture}
 }
 
 \fancyfoot[RO]{
     \begin{tikzpicture}[remember picture,overlay]
-        \node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth,height=43pt]{lib/book/img/footerscroll}};
-        \node[xshift=-20pt,yshift=30pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{pagegold}{\thepage}};
-        \node[anchor=south east,xshift=-\marginparwidth-\marginparpush,yshift=27pt] at (current page.south east) {\rpg@FooterFont{\textcolor{pagegold}{\nouppercase\leftmark}}};
+    	{
+    		% Standard
+    		\ifnum\design=1000
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_1000}};   
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Kapitel 2
+    		\ifnum\design=2000
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_2000}};    		
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Kapitel 2
+    		\ifnum\design=3001
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_3001}};    		
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Kapitel 3
+    		\ifnum\design=3002
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_3002}};
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Magieafertigkeit
+    		\ifnum\design=4040
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_magic}};
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};    			
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Kampffertigkeit
+    		\ifnum\design=4041
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_fight}};
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+       		\fi
+       		% Künstlerisch
+    		\ifnum\design=4042
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_kunst}};
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Naturbezogene
+    		\ifnum\design=4043
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_natur}};
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Sozial
+    		\ifnum\design=4044
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_sozial}};
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Technische
+    		\ifnum\design=4045
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_techno}};
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		Überlebensfertigkeit
+    		\ifnum\design=4046
+    			\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_survive}};
+    			\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};
+    			\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Kampffsystem
+    		\ifnum\design=6000
+	    		\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_fight}};
+	    		\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};
+	    		\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    		% Ausruestung
+    		\ifnum\design=7000
+				\node[inner sep=0pt,anchor=south,nearly opaque] at (current page.south) {\includegraphics[width=\paperwidth]{lib/book/img/footerscroll_ausruestung}};
+				\node[anchor=south east, xshift=-21pt, yshift=8pt, align=center, minimum width=20pt] at (current page.south east) {\rpg@PageNumberFont\textcolor{monstertandark}{\thepage}};
+				\node[anchor=south east, yshift=11pt, align=center, minimum width=600pt] at (current page.south east) {\steam{\textcolor{monstertandark}{\nouppercase\leftmark}}};
+    		\fi
+    	}
     \end{tikzpicture}
 }
 
 \fancypagestyle{plain}{}
 
+\fancypagestyle{part}{ 
+%    \fancyhf{} % clear all headers and footers
+%    \newcount\PartNr
+%    \PartNr=1
+%    \fancyhead{
+%        \begin{tikzpicture}[remember picture,overlay]
+%        
+%        \ifnum\PartNr=2
+%        	\node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{lib/book/img/kesselstadt}};	
+%        	\PartNr=3
+%        \fi
+%        
+%        \ifnum\PartNr=1
+%        	\node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{lib/book/img/part-cover}};	
+%        	\PartNr=2
+%        \fi            
+%            \node[inner sep=0pt,anchor=north] at (current page.north) {\includegraphics[width=\paperwidth]{lib/book/img/header-part-circ}};
+%            \node[inner sep=0pt,anchor=north west] at (current page.north west) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}};
+%            \node[xscale=-1, inner sep=0pt, anchor=north west] at (current page.north east) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}};
+%        \end{tikzpicture}
+%        aöslkdjföalskjdföalsk
+%    }
+}
 
-\fancypagestyle{part}{
-    \fancyhf{} % clear all headers and footers
-    \fancyhead{
-        \begin{tikzpicture}[remember picture,overlay]
-            \node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{lib/book/img/part-cover}};
-            \node[inner sep=0pt,anchor=north] at (current page.north) {\includegraphics[width=\paperwidth]{lib/book/img/header-part-circ}};
-            \node[inner sep=0pt,anchor=north west] at (current page.north west) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}};
-            \node[xscale=-1, inner sep=0pt, anchor=north west] at (current page.north east) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}};
-        \end{tikzpicture}
-    }
+\fancypagestyle{part1}{ 
+	\fancyhf{} % clear all headers and footers
+	\newcount\PartNr
+	\PartNr=1
+	\fancyhead{
+		\begin{tikzpicture}[remember picture,overlay]
+			
+			\node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{lib/book/img/kesselstadt}};				
+			\node[inner sep=0pt,anchor=north] at (current page.north) {\includegraphics[width=\paperwidth]{lib/book/img/header-part-circ}};
+			\node[inner sep=0pt,anchor=north west] at (current page.north west) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}};
+			\node[xscale=-1, inner sep=0pt, anchor=north west] at (current page.north east) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}};
+		\end{tikzpicture}
+	}
+}
+
+\fancypagestyle{part2}{ 
+	\fancyhf{} % clear all headers and footers
+	\newcount\PartNr
+	\PartNr=1
+	\fancyhead{
+		\begin{tikzpicture}[remember picture,overlay]
+			\node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{lib/book/img/part-cover}};				
+			\node[inner sep=0pt,anchor=north] at (current page.north) {\includegraphics[width=\paperwidth]{lib/book/img/header-part-circ}};
+			\node[inner sep=0pt,anchor=north west] at (current page.north west) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}};
+			\node[xscale=-1, inner sep=0pt, anchor=north west] at (current page.north east) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}};
+		\end{tikzpicture}
+	}
+}
+
+\fancypagestyle{arcanis}{
+	\fancyhf{} % clear all headers and footers
+	\fancyhead{
+		\begin{tikzpicture}[remember picture,overlay]
+			%\node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{lib/book/img/part-cover}};
+			\node[inner sep=0pt,anchor=north] at (current page.north) {\includegraphics[width=\paperwidth]{lib/book/img/header-part-circ}};
+			\node[inner sep=0pt,anchor=north west] at (current page.north west) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}};
+			\node[xscale=-1, inner sep=0pt, anchor=north west] at (current page.north east) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}};
+		\end{tikzpicture}
+	}
 }
 
 \fancypagestyle{chapter}{
     \thispagestyle{fancy}
     \fancyhead{
         \begin{tikzpicture}[remember picture,overlay]
-            \node[inner sep=0pt] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{lib/book/img/background}};
-            \node[inner sep=0pt,anchor=north west] at (current page.north west) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-chapter}};
-            \node[xscale=-1, inner sep=0pt, anchor=north west] at (current page.north east) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-chapter}};
+            \node[inner sep=0pt] at (current page.center) {\includegraphics[width=1.0286\paperwidth,height=1.0202\paperheight]{Bilder/Background/background}};
+%            \node[inner sep=0pt,anchor=north west] at (current page.north west) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-chapter}};
+%            \node[xscale=-1, inner sep=0pt, anchor=north west] at (current page.north east) {\includegraphics[width=.5\paperwidth]{lib/book/img/header-chapter}};
         \end{tikzpicture}
     }
 }

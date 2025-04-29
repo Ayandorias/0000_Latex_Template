@@ -4,12 +4,21 @@
 
 \renewcommand{\sfdefault}{lmss}
 
-\newcommand{\rpg@TitleFont}{\normalfont\scshape\Huge}
+%\newcommand{\rpg@TitleFont}{\normalfont\scshape\Huge}
+\newcommand{\rpg@ChapterFont}{\normalfont\controwell\Huge}
+\newcommand{\rpg@TitleFont}{\normalfont\steam\Huge}
 
 \newcommand{\rpg@TableTitleFont}{\fontfamily{fosj}\selectfont\bfseries\scshape}
 \newcommand{\rpg@TableBodyFont}{\sffamily}
 
-\newcommand{\rpg@BoxTitleFont}{\fontfamily{fosj}\selectfont\bfseries\scshape\color{black}}
+%\newcommand{\rpg@BoxTitleFont}{\fontfamily{fosj}\selectfont\bfseries\scshape\color{black}}
+\newcommand{\rpg@BoxTitleFont}{\normalfont\steam\Huge\color{rpg-boxtitlefontcolor}}
+\newcommand{\rpg@BoxAdvantageTitleFont}{\normalfont\steam\Huge\color{advantagetitle}}
+\newcommand{\rpg@BoxDisadvantageTitleFont}{\normalfont\steam\Huge\color{disadvantagetitle}}
+\newcommand{\rpg@BoxBoxTitleFont}{\normalfont\steam\Large\color{rpg-boxtitlefontcolor}}%monsterboxtitle}}
+\newcommand{\rpg@BoxTitleFontDiff}{\normalfont\controwell\large\color{black}}
+\newcommand{\rpg@BoxSpellSectionHeader}{\normalfont\controwell\Large}
+\newcommand{\rpg@BoxSpellSectionSubHeader}{\normalfont\controwell\large}
 \newcommand{\rpg@BoxBodyFont}{\sffamily}
 
 \newcommand{\rpg@StatBlockTitleFont}{\normalfont\bfseries\scshape}
@@ -17,7 +26,32 @@
 \newcommand{\rpg@StatBlockBodyFont}{\sffamily}
 
 \newcommand{\rpg@FooterFont}{\normalfont\scshape}
-\newcommand{\rpg@PageNumberFont}{\normalfont}
+\newcommand{\rpg@PageNumberFont}{\normalfont\steam\LARGE}
+
+%/home/heresy/Privat/Projekte/Rollenspiel - Nebenwelten/Schriften/Controwell-Italic.otf
+%/home/heresy/Privat/Projekte/Rollenspiel - Nebenwelten/Schriften/Controwell-Italic.ttf
+%/home/heresy/Privat/Projekte/Rollenspiel - Nebenwelten/Schriften/ControwellScript-Regular.otf
+%/home/heresy/Privat/Projekte/Rollenspiel - Nebenwelten/Schriften/ControwellScript-Regular.ttf
+
+\newfontfamily\controwell[
+Path = lib/book/fonts/,
+Extension = .otf,
+%	UprightFont = *,
+%	BoldFont = * Bold,
+%	ItalicFont = * Italic,
+%	BoldItalicFont = * Bold Italic,
+]{Controwell-Italic}
+\DeclareTextFontCommand{\controwellfont}{\controwell}
+
+\newfontfamily\steam[
+	Path = lib/book/fonts/,
+	Extension = .otf,
+%	UprightFont = *,
+%	BoldFont = * Bold,
+%	ItalicFont = * Italic,
+%	BoldItalicFont = * Bold Italic,
+]{Steamwreck}
+\DeclareTextFontCommand{\steamfont}{\steam}
 
 \newfontfamily\nodesto[
   Path = lib/book/fonts/,

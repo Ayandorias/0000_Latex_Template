@@ -5,14 +5,17 @@
 %
 
 % Set a different geometry with \newgeometry
-\usepackage[
-  bindingoffset=15pt, % .2in
-  hmargin=50pt,       % .7in
-  top=40pt,           % .55in
-  bottom=50pt,        % .7in
-  footskip=30pt,      % makes the footer text line up with the graphic
-  scale=0.90,
-]{geometry}
+%\usepackage[
+%  bindingoffset=15pt, % .2in
+  %hmargin=50pt,       % .7in
+%%%%%  margin=20mm,
+%  top=40pt,           % .55in
+%  bottom=50pt,        % .7in
+%%%%%  left=4cm,
+  %%%%%%%%right=4cm,
+%  footskip=30pt,      % makes the footer text line up with the graphic
+%  scale=0.90,
+%]{geometry}
 
 % Loaded before tikz to avoid package option conflict with pgf.
 \RequirePackage[table]{xcolor}
@@ -103,6 +106,8 @@
 
 
 % Load other modules of this package
+\RequirePackage{lib/book/rpg-advantage}
+\RequirePackage{lib/book/rpg-disadvantage}
 \RequirePackage{lib/book/rpg-art}
 \RequirePackage{lib/book/rpg-box}
 \RequirePackage{lib/book/rpg-colors}
@@ -113,7 +118,10 @@
 \RequirePackage{lib/book/rpg-sections}
 \RequirePackage{lib/book/rpg-spell}
 \RequirePackage{lib/book/rpg-strings}   % Load document strings
+\RequirePackage{lib/book/rpg-skill}
 \RequirePackage{lib/book/rpg-table}
+\RequirePackage{lib/book/rpg-work}
+\RequirePackage{lib/book/rpg-equipment}
 
 % Set paragraph and line spacing
 %\linespread{1.1}%
@@ -172,3 +180,4 @@
     \kcmd@nbk \commandkey {#1}//{first}{second}//oftwo\endcsname
   }
 }
+

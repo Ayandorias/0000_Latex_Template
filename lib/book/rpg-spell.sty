@@ -1,15 +1,389 @@
-\newcommand{\rpgspellheader}[6]{
-  \subtitlesection{#1}{#2}
-  \vspace{-1ex} % subtitlesection artefact; topsep also changes bottom spacing.
-  \begin{description}[font=\normalfont\textbf,noitemsep,topsep=1ex,leftmargin=1em]
-    \item[Casting Time:] #3
-    \item[Range:] #4
-    \item[Components:] #5
-    \item[Duration:] #6
-  \end{description}
+\newcommand{\spelltitle}[2]{
+	%\paragraph{#1}\vspace{-1ex}
+	%\steam{\huge #1}\vspace{-1ex}
+	
+	%\steamfont{\begin{LARGE}\textbf{#1}\end{LARGE}}\vspace{0ex}\par
+	
+	\begin{tcolorbox}[
+		standard jigsaw,
+		colback=red!5!white,
+		colframe=skillboxframe!50!white,
+		arc=0pt,
+		opacityback=0]
+		\rpg@BoxTitleFont#1
+	\end{tcolorbox}
+	
+	\textit{#2}\vspace{1ex}\par
 }
 
-\newenvironment{rpg-spell}[6]
-  {\rpgspellheader{#1}{#2}{#3}{#4}{#5}{#6}}
-  % Environment encloses description.
+\newcommand{\rpgspellheader}[8]{
+	\spelltitle{#1}{#2}
+  	\vspace{-1ex} % subtitlesection artefact; topsep also changes bottom spacing.
+  	\begin{description}[font=\normalfont\textbf,noitemsep,topsep=1ex,leftmargin=1em]
+	    \item[Zauberdauer:] #3
+	    \item[Wirkradius:] #4
+	    \item[Stufe:] #5
+	    \item[Wirkungsdauer:] #6
+	    \item[Geste:] #7
+  	\end{description}
+  	#8
+}
+
+\newcommand{\rpgspellsubheadermagictitle}{\normalfont\steam\LARGE\color{spellheader}}
+\newcommand{\rpgspellsubheadermagic}[1]{
+	\begin{tcolorbox}[
+		%standard jigsaw,
+		enhanced, 
+		%frame hidden,
+		before skip=7pt plus 2pt,
+		borderline north={2pt}{0pt}{spellheader},
+		%borderline north={2.5pt}{0.75pt}{exboxbackground},
+		borderline south={2pt}{0pt}{spellheader},
+		%borderline west={2.5pt}{0.75pt}{exboxbackground},
+		colback=monstertandark!50!white,%red!5!white,
+		%colframe=skillboxframe!50!white,
+		%colback=advanceboxframe,%!5!white,
+		colframe=monstertandark!50!white,
+		arc=0pt,
+		opacityback=0]
+		%\rpg@BoxTitleFont#1
+		{\rpgspellsubheadermagictitle#1}
+	\end{tcolorbox}
+}
+
+\newcommand{\rpgspellsubsubheadermagic}[1]{
+	\begin{tcolorbox}[
+		%standard jigsaw,
+		enhanced, 
+		%frame hidden,
+%		before skip=7pt plus 2pt,
+%		borderline north={2pt}{0pt}{spellheader},
+%		borderline north={2.5pt}{0.75pt}{exboxbackground},
+		borderline south={2pt}{0pt}{spellheader},
+		%borderline west={2.5pt}{0.75pt}{exboxbackground},
+		colback=spellheader!90!white,%red!5!white,
+		%colframe=skillboxframe!50!white,
+		%colback=advanceboxframe,%!5!white,
+		colframe=spellheader!5!white,
+		arc=0pt,
+		opacityback=0]
+		%\rpg@BoxTitleFont#1
+		{\rpgspellsubheadermagictitle#1}
+	\end{tcolorbox}
+}
+
+\newenvironment{rpg-spell}[8]
+{\rpgspellheader{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}}
+% Environment encloses description.
 {\vspace{\baselineskip}}
+
+
+\newcommand{\spellhruleo}{
+	\vspace{2pt}
+	{\color{spellheader}\hrule height 2pt}
+	\vspace{2pt}
+}
+
+% Define Spell subsection header style
+\newcommand{\rpgspellsection}[1]{%
+	\begingroup
+	\par\medskip%\color{title1}
+	{\color{spellheader}\rpg@BoxSpellSectionHeader #1}
+	% \rule is a horizontal command, so placing it under the title incurs extra
+	% line spacing. Use \hrule (a vertical command) instead.
+	\vspace{3pt}
+	%    {\color{exboxbackground}\hrule height 2pt}
+	\spellhruleo
+	\vspace{3pt}
+	\endgroup%
+}
+
+\newcommand{\rpgspellsubsection}[1]{%
+	\begingroup
+	\par\medskip%\color{title1}
+	{\color{spellheader}\rpg@BoxSpellSectionSubHeader #1}
+	% \rule is a horizontal command, so placing it under the title incurs extra
+	% line spacing. Use \hrule (a vertical command) instead.
+	\vspace{3pt}
+	%    {\color{exboxbackground}\hrule height 2pt}
+	\spellhruleo
+	\vspace{3pt}
+	\endgroup%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Elementarzauber
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\rpgelementarspellheader}[9]{
+	\spelltitle{#1}{#2}
+	\vspace{-1ex} % subtitlesection artefact; topsep also changes bottom spacing.
+	\begin{description}[font=\normalfont\textbf,noitemsep,topsep=1ex,leftmargin=1em]
+		\item[Element:] #8
+		\item[Zauberdauer:] #3
+		\item[Wirkradius:] #4
+		\item[Stufe:] #5
+		\item[Wirkungsdauer:] #6
+		\item[Geste:] #7
+	\end{description}
+	#9
+}
+
+\newenvironment{rpg-elementar-spell}[9]
+{\rpgelementarspellheader{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}{#9}}
+% Environment encloses description.
+{\vspace{\baselineskip}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Kampfzauber
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\rpgcombatspellheader}[8]{
+	\spelltitle{#1}{#2}
+	\vspace{-1ex} % subtitlesection artefact; topsep also changes bottom spacing.
+	\begin{description}[font=\normalfont\textbf,noitemsep,topsep=1ex,leftmargin=1em]
+		\item[Zauberdauer:] #3
+		\item[Wirkradius:] #4
+		\item[Stufe:] #5
+		\item[Wirkungsdauer:] #6
+		\item[Geste:] #7
+	\end{description}
+	#8
+}
+
+\newenvironment{rpg-combat-spell}[8]
+{\rpgcombatspellheader{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}}
+% Environment encloses description.
+{\vspace{\baselineskip}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%				Weapon
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\rpgweapondescription}[1]{
+	\subparagraph{Beschreibung:}\vspace{0ex}
+	\textit{#1}\vspace{0ex}\par
+}
+
+\newcommand{\rpgweapontitle}[1]{
+	%\paragraph{#1}\vspace{0ex}
+	\begin{LARGE}\textbf{#1}\end{LARGE}\vspace{0ex}\par
+}
+
+
+\newcommand{\rpgweaponheader}[5]{
+	\rpgweapontitle{#1}
+	\begin{description}[font=\normalfont\textbf,noitemsep,topsep=1ex,leftmargin=1em]
+		\item[Typ:] #2
+		\item[Schaden:] #3
+		\item[Stufe:] #4
+		%\item[Beschreibung:] #5
+  	\end{description}
+  	\rpgweapondescription{#5}
+}
+\newenvironment{rpg-weapon}[5]
+{\rpgweaponheader{#1}{#2}{#3}{#4}{#5}}
+% Environment encloses description.
+{\vspace{\baselineskip}}
+
+
+
+
+
+
+
+
+
+% Colors for the spells 
+\definecolor{spellheader}{HTML}{673a8f}
+
+\newtcolorbox{spellbox}{
+	enhanced,
+	frame hidden,
+	before skip=7pt plus 2pt,
+	boxrule=0pt,
+	breakable,
+	boxsep=0pt,
+	toptitle=11pt,
+	bottom=11pt,
+	arc=0mm,
+	oversize=0pt,
+	%	colbacktitle=monstertandark!50!white,
+	%	colframe=exboxbackground,
+	fonttitle=\rpg@BoxTitleFont,
+	fontupper=\rpg@StatBlockBodyFont,
+	opacityback=0
+}
+
+\newcommand{\spellheadertitle}{\normalfont\steam\Huge\color{spellheader}}
+\newcommand{\spellheadersubtitle}{\normalfont\steam\normalsize\color{spellheader}}
+
+\newcommand{\spellhrule}{
+	\vspace{1pt}
+	{\color{spellheader}\hrule height 1pt}
+	\vspace{1pt}
+}
+
+\newcommand{\spellheader}[1]{
+	\begin{tcolorbox}[
+		%standard jigsaw,
+		enhanced, 
+		%frame hidden,
+		before skip=7pt plus 2pt,
+		borderline north={2pt}{0pt}{spellheader},
+		%borderline north={2.5pt}{0.75pt}{exboxbackground},
+		%borderline west={10pt}{0pt}{spellheader},
+		%borderline west={2.5pt}{0.75pt}{exboxbackground},
+		colback=monstertandark!50!white,%red!5!white,
+		%colframe=skillboxframe!50!white,
+		%colback=advanceboxframe,%!5!white,
+		colframe=monstertandark!50!white,
+		arc=0pt,
+		opacityback=0]
+		%\rpg@BoxTitleFont#1
+		{\spellheadertitle#1}
+	\end{tcolorbox}
+}
+
+
+\NewDocumentEnvironment{spellaction}{o}{%
+	\IfValueTF{#1}{%
+		{\color{spellheader}\smallskip\emph{\textbf{#1:}}}
+	}{\unskip}%
+}{\par}
+
+
+%\newcommand{\spellaction}[2]{
+%	{
+%		\vspace{.15em}
+%		\noindent\hangindent=1em\hangafter=1
+%		{\textbf{#1:\;	}}#2\par
+%		%{\spellheadersubtitle{#1:}}{\tiny#2}\par
+%	}
+%}
+
+\newcommand{\spellbasisat}[1]{
+	\begin{spellaction}[Basisattribut]
+		{#1}
+	\end{spellaction}
+}
+
+\newcommand{\spellduration}[1]{
+	\begin{spellaction}[Wirkdauer]
+		{#1}
+	\end{spellaction}
+}
+
+\newcommand{\spelllevel}[1]{
+	\begin{spellaction}[Stufe]
+		{#1}
+	\end{spellaction}
+}
+
+\newcommand{\spellreach}[1]{
+	\begin{spellaction}[Reichweite]
+		{#1}
+	\end{spellaction}
+}
+
+\newcommand{\spellmanacost}[1]{
+	\begin{spellaction}[Manakosten]
+		{#1}
+	\end{spellaction}
+}
+
+\newcommand{\spellpmmod}[1]{
+	$\pm$#1
+}
+
+\newcommand{\spellpmod}[1]{
+	$+$#1
+}
+
+\newcommand{\spellmmod}[1]{
+	$-$#1
+}
+
+\newcommand{\spellmodifications}[1]{
+	\begin{spellaction}[Modifikator]
+		{#1}
+	\end{spellaction}
+}
+
+%\newcommand{\requirement}[1]{
+%	\begin{spellaction}[Vorraussetzung]
+%		{#1}
+%	\end{spellaction}
+%}
+	
+\newcommand{\spellspecial}[1]{
+	\begin{spellaction}[Spezialisierung]
+		{#1}
+	\end{spellaction}
+}
+
+\newcommand{\spelltime}[1]{
+	\begin{spellaction}[Zeitspanne]
+		{#1}
+	\end{spellaction}
+}
+
+\newcommand{\spelltraining}[1]{
+	\begin{spellaction}[Trainingsstufe]
+		{#1}
+	\end{spellaction}
+}
+
+\newcommand{\spelldescription}[1]{
+	\vspace{.5em}
+	\begin{flushleft}
+		%\textit{
+			#1
+			%}	
+	\end{flushleft}
+}
+
+\newcommand{\spellrequirement}[1]{
+	\begin{spellaction}[Vorraussetzung]
+		{#1}
+	\end{spellaction}
+}
+
+\newcommand{\spellrule}[1]{
+	\begin{spellaction}[Regel]
+		{#1}
+	\end{spellaction}
+}
+
+\newcommand{\spellfocus}[1]{
+	\begin{spellaction}[Fokussierung]
+		{#1}
+	\end{spellaction}
+}
+
+%% Stat block made to look like stat blocks in the PHB.
+%\newtcolorbox{subspellbox}[2][]{
+%	%	\charnewcol,
+%	enhanced,
+%	frame hidden,
+%	before skip=7pt plus 2pt,
+%	boxrule=0pt,
+%	breakable,
+%	boxsep=0pt,
+%	toptitle=11pt,
+%	left=7pt,
+%	right=7pt,
+%	bottom=11pt,
+%	arc=0mm,
+%	oversize=0pt,
+%	borderline north={4pt}{0pt}{exboxbackground},
+%	borderline north={2.5pt}{0.75pt}{exboxbackground},
+%	borderline south={4pt}{0pt}{exboxbackground},
+%	borderline south={2.5pt}{0.75pt}{exboxbackground},
+%	colback=monstertandark!50!white, %statblockbg,
+%	colbacktitle=skillspellmagic,%monstertandark!50!white, %statblockbg,
+%	colframe=exboxbackground,%title1,
+%	fonttitle=\rpg@BoxTitleFont,%\rpg@StatBlockTitleFont\Large,
+%	coltitle=monsterboxtitle,
+%	fontupper=\rpg@StatBlockBodyFont,
+%	title=#2\vspace{2mm},
+%	#1
+%}

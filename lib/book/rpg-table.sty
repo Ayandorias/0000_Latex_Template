@@ -1,5 +1,9 @@
 %\RequirePackage{longtable}
 \RequirePackage{supertabular}
+
+\arrayrulecolor{rpg-boxframecolor}
+
+
 % Table Header
 \newcommand{\header}[1]{{
 	\par\vspace*{8pt}
@@ -12,23 +16,41 @@
 
 % Table Environment
 \newenvironment{rpg-table}[1][lX]{
-	\par\vspace*{8pt}
+	\par\vspace*{-1pt}
 	\noindent
     \rpg@TableBodyFont
-	\rowcolors{1}{bgtan}{commentgreen} % Alternate colors
+	%\rowcolors{1}{bgtan}{commentgreen} % Alternate colors
+	\rowcolors{1}{monstertandark!50!white}{monstertandark} % Alternate colors
 	\tabularx{\linewidth}{#1}
 }{
     \endtabularx
-    \vspace{8pt plus 1pt}
+    \vspace{-1pt}%8pt plus 1pt}
     \noindent
 } 
+
+
+
+
+%\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{1\hsize}\centering}X|>{\setlength\hsize{1\hsize}\raggedleft}X@{} >{\setlength\hsize{1\hsize}\raggedright}X|>{\setlength\hsize{1\hsize}\centering}X| } 
+%	\hline
+%	Label 1 & \multicolumn{2}{>{\centering\setlength\hsize{2\hsize} }X|}{Label 2} & Label 3\tabularnewline
+%	\hline 
+%	123  & 123  & 456  & 123  \tabularnewline
+%	\hline
+%	123  & 123  & 456  & 123  \tabularnewline
+%	\hline
+%\end{tabularx}
+
+
+
+
 
 % Table Environment
 \newenvironment{rpg-table2}[1][lX]{
 	\par\vspace*{8pt}
 	\noindent
 	\fontfamily{lmss}\selectfont %Select font
-	\rowcolors{1}{bgtan}{commentblue} % Alternate colors
+	\rowcolors{1}{monstertandark!50!white}{monstertandark} % Alternate colors
 	\tabularx{\linewidth}{#1}
 }
 {
@@ -42,7 +64,7 @@
 	\par\vspace*{8pt}
 	\noindent
     \rpg@TableBodyFont
-    \rowcolors{1}{commentgreen}{bgtan} % Alternate colors
+    \rowcolors{1}{tablerow}{alternate-tablerow} % Alternate colors
     \supertabular{#1}
 }{
     \endsupertabular

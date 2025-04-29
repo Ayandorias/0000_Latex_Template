@@ -10,64 +10,90 @@
 % cover
 \newkeycommand\rpgMakeCover[
     image=,
-    logo=,
+    %logo=,
     title=Title,
     subtitle=subtitle,
     ]{
     \onecolumn
     \thispagestyle{empty}
     \AddThispageHook{
-        \tikz[remember picture,overlay] \node[inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{\commandkey{image}}};
+        \tikz[remember picture,overlay] \node[inner sep=0pt] at (current page.center){\includegraphics[width=1.0286\paperwidth,height=1.0202\paperheight]{\commandkey{image}}};
     }
     \begin{center}
-        \vspace*{-15mm}\includegraphics[width=3cm]{\commandkey{logo}}\\*\vspace*{15mm}
+        %\vspace*{15mm}\includegraphics[width=15cm]{\commandkey{logo}}\\*
+        \vspace*{10mm}
         \nodesto%
-        \fontsize{48pt}{48pt}
+        \fontsize{36pt}{36pt}
         \selectfont
-        \fillstroke{[1]}{[0]}{1.5}{\MakeUppercase{\commandkey{title}}}\\*
-        \normalfont\normalsize\includegraphics[width=.5\paperwidth]{lib/book/img/separator}
+        \fillstroke{[1]}{[0]}{0.5}{\color{subtitle}\MakeUppercase{\commandkey{title}}}\\*
+        %\normalfont\normalsize\includegraphics[width=.5\paperwidth]{lib/book/img/separator}
         \LARGE\vfill
-        \fontsize{18pt}{18pt}
+        \fontsize{24pt}{24pt}
         \fillstroke{[1]}{[0]}{0.5}{\textbf{\commandkey{subtitle}}}
     \end{center}
     \clearpage
     \twocolumn%
 }
 
-%\newcommand*{\hbPartCover}{lib/book/img/part-cover}
-%\newcommand*{\hbPartSubcover}{lib/book/img/part-cover2}
-%
-%\renewcommand*{\beforepartskip}{\null\vspace*{-55pt}\hspace*{-10pt}}
-%\renewcommand*{\afterpartskip}{\clearpage\hbFullPageArtHook{\hbPartSubcover}}
-%\renewcommand*{\printpartname}{\AddThispageHook{%
-%    \thispagestyle{part}%
-%    \begin{tb*}{\paperwidth}{0pt}{0pt}%
-%      \includegraphics[width=\paperwidth,height=\paperheight]{\hbPartCover}
-%    \end{tb*}%
-%    \begin{tb*}{\paperwidth}{0pt}{0pt}%
-%      \includegraphics[width=\paperwidth]{lib/book/img/header-part-circ}
-%    \end{tb*}%
-%    \begin{tb*}{.5\paperwidth}{0pt}{0pt}%
-%      \includegraphics[width=.5\paperwidth]{lib/book/img/header-part}
-%    \end{tb*}%
-%    \begin{tb*}{.5\paperwidth}{.5\paperwidth}{0pt}
-%      \reflectbox{\includegraphics[width=.5\paperwidth]{lib/book/img/header-part}}
-%    \end{tb*}%
-%  }%
-%  \hspace*{-8pt}\nodesto\fontsize{64pt}{64pt}\selectfont\color{chapter}PART%
-%}
+\newkeycommand\rpgChapterImage[
+image=,
+]{
+	\begin{tikzpicture}[remember picture,overlay]
+		\node [shift={(10.5cm,-5.7cm)}]  at (current page.north west) {\includegraphics[width=1.0286\paperwidth]{\commandkey{image}}};
+	\end{tikzpicture}
+}
 
-% Adjust section and subsection colors and font (change 0em to 1em if you commented the removal of section numbering)
-%\titleformat{} % cmd
-%[] % shape : hang, block, display, runin, leftmargin, rightmargin, drop, wrap, frame
-%{} % format
-%{} % label
-%{} % sep
-%{} % before code
-%[] % after code
 
-% \titlespacing*{〈command〉}{〈left〉}{〈before-sep〉}{〈after-sep〉}[〈right-sep〉]
+\newkeycommand\rpgCharakterImage[
+image=,
+]{
+	\begin{tikzpicture}[remember picture,overlay]		
+		\checkoddpage
+		\ifoddpage
+			\node [inner sep=0pt]  at (13cm, -12.9cm) {\includegraphics[width=9cm, height=30.3cm]{\commandkey{image}}};
+	
+		\else
+			\node [inner sep=0pt]  at (4.2cm, -12.9cm) {\includegraphics[width=9cm, height=30.3cm]{\commandkey{image}}};
+		\fi
+	\end{tikzpicture}
+	\charnewcol
+}
 
+\newkeycommand\rpgMakeMap[
+image=,
+%logo=,
+%title=Title,
+%subtitle=subtitle,
+]{
+	\onecolumn
+	\thispagestyle{empty}
+	\AddThispageHook{
+		\tikz[remember picture,overlay] \node[inner sep=0pt] at (current page.center){\includegraphics[width=1.0286\paperwidth,height=1.0202\paperheight]{\commandkey{image}}};
+	}
+	\begin{center}
+
+	\end{center}
+	\clearpage
+	\twocolumn%
+}
+
+\newkeycommand\rpgMakeChar[
+image=,
+%logo=,
+%title=Title,
+%subtitle=subtitle,
+]{
+	\onecolumn
+	\thispagestyle{empty}
+	\AddThispageHook{
+		\tikz[remember picture,overlay] \node[inner sep=0pt] at (current page.center){\includegraphics[width=1.0286\paperwidth,height=1.0202\paperheight]{\commandkey{image}}};
+	}
+	\begin{center}
+		
+	\end{center}
+	\clearpage
+	\twocolumn%
+}
 
 %%%%%%%%%%%%%% \part
 
@@ -76,37 +102,61 @@
 {\thispagestyle{part}\nodesto\fontsize{50pt}{50pt}\selectfont\color{title1}\filcenter}
 {\partname \thepart}
 {-15pt}
-{\Large}
+{\Large}%
 
 \titlespacing*{\part}{0pt}{-54pt}{0pt}
 
 %%%%%%%%%%%%%% \chapter
 
+% Normal Table of Contents
+\titleformat{name=\chapter, numberless}
+{\thispagestyle{chapter}\vspace{0pt}\color{title1}\rpg@ChapterFont}
+{}
+{0pt}
+{\Huge}
+
 \titleformat{\chapter}
 [display]
-{\thispagestyle{chapter}\vspace{-60pt}\color{title1}\rpg@TitleFont}
-{\flushright \normalsize \color{title1} \MakeUppercase{\chaptertitlename}{\fontsize{60}{60}\selectfont \color{title1}\thechapter}}
+{\thispagestyle{chapter}\vspace{170pt}\color{title1}\rpg@ChapterFont}
+{\flushright \normalsize \color{title1} \MakeUppercase{\chaptertitlename}{\fontsize{60}{60}\selectfont \color{title1}\hspace{10pt}\thechapter}}
 {0em}
 {\Huge}
-[{\titleline{\color{undergold}\titlerule[2pt]}}]
+[{\titleline{\color{exboxbackground}\titlerule[2pt]}}]
+
+
+\titleformat{\chapter}
+[display]
+{\thispagestyle{chapter}\vspace{50pt}\color{title1}\rpg@ChapterFont}
+{\flushright \normalsize \color{title1} \MakeUppercase{\chaptertitlename}{\fontsize{60}{60}\selectfont \color{title1}\hspace{10pt}\thechapter}}
+{0em}
+{\Huge}
+[{\titleline{\color{exboxbackground}\titlerule[2pt]}}]
+
+
+\titleformat{\lands}
+[display]
+{\thispagestyle{chapter}\vspace{170pt}\color{title1}\rpg@ChapterFont}
+{\flushright \normalsize \color{title1} \MakeUppercase{\chaptertitlename}{\fontsize{60}{60}\selectfont \color{title1}\hspace{10pt}\thechapter}}
+{0em}
+{\Huge}
+[{\titleline{\color{exboxbackground}\titlerule[2pt]}}]
 
 %%%%%%%%%%%%%% \section
 
 \titleformat{\section}%[block]
 {\color{title1}\rpg@TitleFont\huge}{\thesection}{0.5em}{}
-[{\titleline{\color{undergold}\titlerule[0.5pt]}}]
+[{\titleline{\color{exboxbackground}\titlerule[0.5pt]}}]
 
 %%%%%%%%%%%%%% \subsection
 
-
 \titleformat{\subsection}%[block]
-{\color{title2}\rpg@TitleFont\LARGE}{\thesubsection}{0.5em}{$\bigstar$ }
-[{\titleline{\color{title2}\titlerule[0.5pt]}}]
+{\color{title2}\rpg@TitleFont\Large}{\thesubsection}{0.5em}{}%{$\bigstar$ }
+[{\titleline{\color{exboxbackground}\titlerule[0.5pt]}}]
 
 %%%%%%%%%%%%%% \subsubsection
 
 \titleformat{\subsubsection}
-{\color{title3}\rpg@TitleFont\Large}{\thesubsubsection}{0em}{$\blacktriangleright$ }[]
+{\color{title3}\rpg@TitleFont\Large}{\thesubsubsection}{0em}{}%{$\blacktriangleright$ }[]
 
 %%%%%%%%%%%%%% \paragraph
 
@@ -116,11 +166,11 @@
 %%%%%%%%%%%%%% \subparagraph
 
 \titleformat{\subparagraph}[runin]
-{\normalfont\normalsize\bfseries\slshape}
+{\rpg@TitleFont\normalsize}%\bfseries\slshape}
 {\thesubparagraph\quad}
 {0pt}
 {}
-[.]
+[:]
 
 \titlespacing*{\subparagraph}{\parindent}{\parskip}{\wordsep}
 

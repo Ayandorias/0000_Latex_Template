@@ -57,8 +57,17 @@
 	#1
 }
 
+\newcommand{\charnewcol}
+{
+	\checkoddpage
+	\ifoddpage
+	\else
+		\newpage
+	\fi
+}
 % Stat block made to look like stat blocks in the PHB.
 \newtcolorbox{monsterboxbg}[2][]{
+%	\charnewcol,
   enhanced,
   frame hidden,
   before skip=7pt plus 2pt,
@@ -71,17 +80,17 @@
   bottom=11pt,
   arc=0mm,
   oversize=0pt,
-  borderline north={4pt}{0pt}{title1},
-  borderline north={2.5pt}{0.75pt}{statblockribbon},
-  borderline south={4pt}{0pt}{title1},
-  borderline south={2.5pt}{0.75pt}{statblockribbon},
-  colback=statblockbg,
-  colbacktitle=statblockbg,
-  colframe=title1,
-  fonttitle=\rpg@StatBlockTitleFont\Large,
-  coltitle=title1,
+  borderline north={4pt}{0pt}{exboxbackground},
+  borderline north={2.5pt}{0.75pt}{exboxbackground},
+  borderline south={4pt}{0pt}{exboxbackground},
+  borderline south={2.5pt}{0.75pt}{exboxbackground},
+  colback=monstertandark!50!white, %statblockbg,
+  colbacktitle=exboxtitlebackground,%monstertandark!50!white, %statblockbg,
+  colframe=exboxbackground,%title1,
+  fonttitle=\rpg@BoxTitleFont,%\rpg@StatBlockTitleFont\Large,
+  coltitle=monsterboxtitle,
   fontupper=\rpg@StatBlockBodyFont,
-  title=#2,
+  title=#2\vspace{2mm},
   #1
 }
 
@@ -94,22 +103,35 @@
 }
 
 
+\newcommand{\charhrule}{
+	\vspace{1pt}
+	{\color{exboxbackground}\hrule height 2pt}
+	\vspace{2pt}
+}
+
+\newcommand{\charhruleo}{
+	\vspace{2pt}
+	{\color{exboxtitlebackground}\hrule height 2pt}
+	\vspace{2pt}
+}
+
 % Define Monster subsection header style
 \newcommand{\rpgmonstersection}[1]{%
   \begingroup
     \par\medskip\color{title1}
-    \rpg@StatBlockSubtitleFont\large #1
+    {\color{exboxbackground}\rpg@BoxTitleFontDiff #1}
     % \rule is a horizontal command, so placing it under the title incurs extra
     % line spacing. Use \hrule (a vertical command) instead.
     \vspace{3pt}
-    \hrule height 0.6pt
+%    {\color{exboxbackground}\hrule height 2pt}
+	\charhruleo	
     \vspace{3pt}
   \endgroup%
 }
 
 \NewDocumentEnvironment{rpg-monsteraction}{o}{%
   \IfValueTF{#1}{%
-    \smallskip\emph{\textbf{#1.}}%
+    {\color{exboxbackground}\smallskip\emph{\textbf{#1:}}}
   }{\unskip}%
 }{\par}
 
@@ -125,7 +147,7 @@
 
 % A rpg@monsterattrs helper macro that always displays an attribute.
 \newcommand{\rpg@monsterattr}[2]{%
-  \item[#2] \commandkey{#1}
+  \item[#2:] \commandkey{#1}
 }
 
 % A rpg@monsterattrs helper macro that displays an attribute if the user defined
@@ -139,28 +161,52 @@
 %
 % Macros for use within the monster environment
 %
-\newkeycommand\basics[armorclass=0, hitpoints=0, speed=0]{%
-  \begin{rpg@monsterattrs}
-    \rpg@monsterattr{armorclass}{\armorclassname}
-    \rpg@monsterattr{hitpoints}{\hitpointsname}
-    \rpg@monsterattr{speed}{\speedname}
-  \end{rpg@monsterattrs}%
+\newkeycommand\basics[manapool=0, psychres=0, physres=0, ini=0, reaction=0, armorclass=0, hitpoints=0, speed=0]{%
+  %\begin{rpg@monsterattrs}
+  %	\rpg@monsterattr{manapool}{Manapool}
+  %	\rpg@monsterattr{psychres}{Psychische Resistenz}
+  %	\rpg@monsterattr{physres}{Physische Resistenz}
+  %	\rpg@monsterattr{ini}{Initiative}
+  %	\rpg@monsterattr{reaction}{Reaktion}
+   % %\rpg@monsterattr{armorclass}{\armorclassname}
+    %%\rpg@monsterattr{hitpoints}{\hitpointsname}
+    %%\rpg@monsterattr{speed}{\speedname}
+  %\end{rpg@monsterattrs}%
+  
+  \begingroup
+	  \small\color{title1}
+	  \resizebox{\linewidth}{\height}{%
+	  	\begin{tabular}{c|c|c|c|c|c}
+	  		\rule{0pt}{3.7mm} %adds space between hline and table
+	  		\steamfont{\textbf{Manapool}} & \commandkey{manapool} & \steamfont{\textbf{Psych. Res.}} & \commandkey{psychres} & \steamfont{\textbf{Phys. Res.}} & \commandkey{physres} \\
+	  		\steamfont{\textbf{Reaktion}} & \commandkey{reaction} & \steamfont{\textbf{Initiative}} & \commandkey{ini} 
+	  	\end{tabular}
+	  }%
+	  \\[0.4em] %adds space after table
+  \endgroup
 }
 
 % Taubular enviornment for stats-block
-\newkeycommand\stats[STR=\stat{10},
-                        DEX=\stat{10},
-                        CON=\stat{10},
-                        INT=\stat{10},
-                        WIS=\stat{10},
-                        CHA=\stat{10}]{%
+\newkeycommand\stats[GE=\stat{6},
+                        KO=\stat{6},
+                        MK=\stat{6},
+                        SK=\stat{6},
+                        IN=\stat{6}, IO=\stat{6},
+                        WK=\stat{6},manapool=0, crystal=1, psychres=0, physres=0, ini=0, reaction=0, armorclass=0, hitpoints=0, speed=0]{%
     \begingroup
-		\small\centering\color{title1}
+		\small\color{title1}
 		\resizebox{\linewidth}{\height}{%
-			\begin{tabular}{cccccc}
-				\rule{0pt}{3.7mm} %adds space between hline and table
-				\textbf{\strstatname} & \textbf{\dexstatname} & \textbf{\constatname} & \textbf{\intstatname} & \textbf{\wisstatname} & \textbf{\chastatname}\\
-				\commandkey{STR} & \commandkey{DEX} & \commandkey{CON} & \commandkey{INT} & \commandkey{WIS} & \commandkey{CHA}
+			\begin{tabular}{cc}
+			\end{tabular}
+			\begin{tabular}{l|ccl|c}
+				%\rule{0pt}{3.7mm} %adds space between hline and table
+				\steamfont{\textbf{Geschick}} 	 & \commandkey{GE} 		& & \steamfont{\textbf{Manapool}} & \commandkey{manapool} 		\\ \cmidrule{1-2} \cmidrule{4-5}
+				\steamfont{\textbf{Konstitution}} & \commandkey{KO} 	& & \steamfont{\textbf{Kristallstufe}} & \commandkey{crystal} 	\\ \cmidrule{1-2} \cmidrule{4-5}
+				\steamfont{\textbf{Muskelkraft}} &  \commandkey{MK} 	& & \steamfont{\textbf{Psych. Res.}} & \commandkey{psychres}		\\ \cmidrule{1-2} \cmidrule{4-5}
+				\steamfont{\textbf{Intelligenz}} & \commandkey{IN} 		& & \steamfont{\textbf{Phys. Res.}} & \commandkey{physres}		\\ \cmidrule{1-2} \cmidrule{4-5}
+				\steamfont{\textbf{Intuition}} & \commandkey{IO} 		& & \steamfont{\textbf{Reaktion}} & \commandkey{reaction}		\\ \cmidrule{1-2} \cmidrule{4-5}
+				\steamfont{\textbf{Strahlkraft}}  & \commandkey{SK} 	& & \steamfont{\textbf{Initiative}} & \commandkey{ini} 			\\ \cmidrule{1-2} \cmidrule{4-5}
+				\steamfont{\textbf{Willenskraft}} & \commandkey{WK}
 			\end{tabular}
 		}%
 		\\[0.4em] %adds space after table
